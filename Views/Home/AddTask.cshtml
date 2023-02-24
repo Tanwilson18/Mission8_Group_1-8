@@ -1,0 +1,57 @@
+﻿@{
+    ViewData["Title"] = "Add/Edit Task";
+}
+
+<!--Importing Application Response Model-->
+
+<h2>Enter new tasks to your quadrants:</h2>
+
+<!--Task form-->
+<div>
+    <form method="post">
+        <label asp-for="Task">Task: </label>
+        <textarea asp-for="Task" rows="2"></textarea>
+        <br />
+
+        <label asp-for="DueDate">Due Date: </label>
+        <input asp-for="DueDate" type="date" />
+        <br />
+
+        <label asp-for="Quadrant">Quadrant:</label>
+        <select asp-for="Quadrant">
+            <option value="1">Quadrant I: Important / Urgent</option>
+            <option value="2">Quadrant II: Important / Not Urgent</option>
+            <option value="3">Quadrant III: Not Important / Urgent</option>
+            <option value="4">Quadrant III: Not Important / Urgent</option>
+        </select>
+        <br />
+
+        <label asp-for="CategoryId">Category:</label>
+        <select asp-for="CategoryId">
+            <option value="">Select a Category</option>
+            <!--creating our dropdown category menu-->
+            @foreach (Category m in ViewBag.Categories)
+            {
+            <option value="@m.CategoryId">@m.CategoryName</option>
+            }
+
+        </select>
+        <br />
+
+        <label asp-for="Completed">Completed?:</label>
+        <select asp-for="Completed">
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+        </select>
+        <br />
+
+        <!--Submiit button to add Task to quadrants-->
+        <button type="submit">Add Task</button>
+
+        <!--Displaying Validation Errors-->
+        <div asp-validation-summary="All"> </div>
+
+
+    </form>
+</div>
+
