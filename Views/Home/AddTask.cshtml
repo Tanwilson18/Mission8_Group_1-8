@@ -1,7 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Add/Edit Task";
 }
-
+@model Mission8_Group_1_8.Models.TaskResponse
 <!--Importing Application Response Model-->
 
 <h2>Enter new tasks to your quadrants:</h2>
@@ -32,7 +32,7 @@
             <!--creating our dropdown category menu-->
             @foreach (Category m in ViewBag.Categories)
             {
-            <option value="@m.CategoryId">@m.CategoryName</option>
+                <option value="@m.CategoryId">@m.CategoryName</option>
             }
 
         </select>

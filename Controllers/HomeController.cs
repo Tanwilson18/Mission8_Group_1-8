@@ -11,11 +11,14 @@ namespace Mission8_Group_1_8.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        //// constructor 
 
-        public HomeController(ILogger<HomeController> logger)
+        private readonly ILogger<HomeController> _logger;
+        private TaskContext TaskContext { get; set; }
+
+        public HomeController(TaskContext varName)
         {
-            _logger = logger;
+            TaskContext = varName;
         }
 
         public IActionResult Index()
@@ -23,10 +26,16 @@ namespace Mission8_Group_1_8.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        // addtask route
+        [HttpGet]
+        public IActionResult AddTask()
         {
+            ViewBag.Categories = TaskContext.Categories.ToList();
+
             return View();
         }
+        
+        
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
