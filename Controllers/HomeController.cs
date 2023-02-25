@@ -57,7 +57,7 @@ namespace Mission8_Group_1_8.Controllers
 
         }
 
-        // Matrix Route
+        // matrix route
         public IActionResult Matrix()
         {
             var taskResponses = TaskContext.Responses
@@ -66,7 +66,7 @@ namespace Mission8_Group_1_8.Controllers
             return View(taskResponses);
         }
 
-        // Edit Page Get Route
+        // edit get route
         [HttpGet]
         public IActionResult Edit(int taskid)
         {
@@ -77,7 +77,7 @@ namespace Mission8_Group_1_8.Controllers
             return View("AddTask", taskresponse);
         }
 
-        // Edit Page Post Route
+        // edit post route
         [HttpPost]
         public IActionResult Edit(TaskResponse tr)
         {
@@ -87,7 +87,7 @@ namespace Mission8_Group_1_8.Controllers
             return RedirectToAction("Matrix");
         }
 
-        // Delete Page Get Route
+        // delete get route
         [HttpGet]
         public IActionResult Delete(int taskid)
         {
@@ -95,7 +95,7 @@ namespace Mission8_Group_1_8.Controllers
             return View(taskresponse);
         }
 
-        // Delete Page Post Route
+        // delete post route
         [HttpPost]
         public IActionResult Delete(TaskResponse tr)
         {
@@ -105,15 +105,6 @@ namespace Mission8_Group_1_8.Controllers
             return RedirectToAction("Matrix");
         }
 
-        // Complete Route
-        public IActionResult Complete(int taskid)
-        {
-            var taskresponse = TaskContext.Responses.Single(x => x.TaskId == taskid);
-            taskresponse.Completed = true;
-            TaskContext.Update(taskresponse);
-            TaskContext.SaveChanges();
-            return RedirectToAction("Matrix");
-        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

@@ -5,11 +5,12 @@
 @model List<TaskResponse>
 
 <div class="container">
+    <!-- First Row with Just Matrix Title -->
     <div class="row">
         <h3 class="col" align="center">Stephen Covey's Time Management Matrix</h3>
     </div><br />
 
-    <!-- First Row -->
+    <!-- Second Row with Matrix Headers -->
     <div class="row">
         <div class="col-2"></div>
         <div class="col-4 font-weight-bold" align="center">Urgent</div>
@@ -18,10 +19,11 @@
         <div class="col-1"></div>
     </div>
 
-    <!-- Second Row -->
+    <!-- Third Row -->
     <div class="row border border-dark">
         <div class="col-2 font-weight-bold" align="center">Important</div>
         <table class="col-5 border-left border-right border-dark table-striped">
+            <!-- For Loop to Display all Quadrant 1 Tasks -->
             @foreach (var x in Model)
             {
                 if (@x.Quadrant == 1 & @x.Completed == false)
@@ -35,6 +37,7 @@
             }
         </table>
         <table class="col-5 table-striped">
+            <!-- For Loop to Display all Quadrant 2 Tasks -->
             @foreach (var x in Model)
             {
                 if (@x.Quadrant == 2 & @x.Completed == false)
@@ -49,10 +52,11 @@
         </table>
     </div>
 
-    <!-- Third Row -->
+    <!-- Fourth Row -->
     <div class="row border-left border-right border-bottom border-dark">
         <div class="col-2 font-weight-bold" align="center">Not Important</div>
         <table class="col-5 border-left border-right border-dark table-striped">
+            <!-- For Loop to Display all Quadrant 3 Tasks -->
             @foreach (var x in Model)
             {
                 if (@x.Quadrant == 3 & @x.Completed == false)
@@ -67,6 +71,7 @@
         </table>
 
         <table class="col-5 border table-striped">
+            <!-- For Loop to Display all Quadrant 4 Tasks -->
             @foreach (var x in Model)
             {
                 if (@x.Quadrant == 4 & @x.Completed == false)
@@ -79,6 +84,5 @@
                 }
             }
         </table>
-    </div> <br /><br />
-
+    </div> <br />
 </div>
