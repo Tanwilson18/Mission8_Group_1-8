@@ -87,7 +87,34 @@ namespace Mission8_Group_1_8.Migrations
                             Completed = false,
                             DueDate = "Friday",
                             Quadrant = (byte)2,
-                            Task = "Test"
+                            Task = "Mission8"
+                        },
+                        new
+                        {
+                            TaskId = 2,
+                            CategoryId = 2,
+                            Completed = false,
+                            DueDate = "Friday",
+                            Quadrant = (byte)1,
+                            Task = "IS404 Test"
+                        },
+                        new
+                        {
+                            TaskId = 3,
+                            CategoryId = 2,
+                            Completed = false,
+                            DueDate = "Friday",
+                            Quadrant = (byte)3,
+                            Task = "Forecasting Assignment"
+                        },
+                        new
+                        {
+                            TaskId = 4,
+                            CategoryId = 2,
+                            Completed = false,
+                            DueDate = "Thursday",
+                            Quadrant = (byte)4,
+                            Task = "IS414 Test"
                         });
                 });
 
