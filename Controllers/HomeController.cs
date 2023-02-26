@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Mission8_Group_1_8.Models;
 using System;
@@ -26,7 +27,7 @@ namespace Mission8_Group_1_8.Controllers
             return View();
         }
 
-        // addtask route
+        // addtask get route
         [HttpGet]
         public IActionResult AddTask()
         {
@@ -34,8 +35,76 @@ namespace Mission8_Group_1_8.Controllers
 
             return View();
         }
-        
-        
+
+        // addtask post route
+        [HttpPost]
+        public IActionResult AddTask(TaskResponse tr)
+        {
+            // Validation Branch if Model is Valid
+            if (ModelState.IsValid)
+            {
+                TaskContext.Add(tr);
+                TaskContext.SaveChanges();
+
+                return View("Confirmation", tr);
+            }
+            // Reroute back to page if Model is Invalid
+            else
+            {
+                ViewBag.Categories = TaskContext.Responses.ToList();
+                return View(tr);
+            }
+
+        }
+
+        // matrix route
+        public IActionResult Matrix()
+        {
+            var taskResponses = TaskContext.Responses
+                .OrderBy(x => x.DueDate)
+                .ToList();
+            return View(taskResponses);
+        }
+
+        // edit get route
+        [HttpGet]
+        public IActionResult Edit(int taskid)
+        {
+            ViewBag.Categories = TaskContext.Categories.ToList();
+
+            var taskresponse = TaskContext.Responses.Single(x => x.TaskId == taskid);
+
+            return View("AddTask", taskresponse);
+        }
+
+        // edit post route
+        [HttpPost]
+        public IActionResult Edit(TaskResponse tr)
+        {
+            TaskContext.Update(tr);
+            TaskContext.SaveChanges();
+
+            return RedirectToAction("Matrix");
+        }
+
+        // delete get route
+        [HttpGet]
+        public IActionResult Delete(int taskid)
+        {
+            var taskresponse = TaskContext.Responses.Single(x => x.TaskId == taskid);
+            return View(taskresponse);
+        }
+
+        // delete post route
+        [HttpPost]
+        public IActionResult Delete(TaskResponse tr)
+        {
+            TaskContext.Responses.Remove(tr);
+            TaskContext.SaveChanges();
+
+            return RedirectToAction("Matrix");
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

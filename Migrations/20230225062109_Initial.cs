@@ -65,7 +65,22 @@ namespace Mission8_Group_1_8.Migrations
             migrationBuilder.InsertData(
                 table: "Responses",
                 columns: new[] { "TaskId", "CategoryId", "Completed", "DueDate", "Quadrant", "Task" },
-                values: new object[] { 1, 2, false, "Friday", (byte)2, "Test" });
+                values: new object[] { 1, 2, false, "Friday", (byte)2, "Mission8" });
+
+            migrationBuilder.InsertData(
+                table: "Responses",
+                columns: new[] { "TaskId", "CategoryId", "Completed", "DueDate", "Quadrant", "Task" },
+                values: new object[] { 2, 2, false, "Friday", (byte)1, "IS404 Test" });
+
+            migrationBuilder.InsertData(
+                table: "Responses",
+                columns: new[] { "TaskId", "CategoryId", "Completed", "DueDate", "Quadrant", "Task" },
+                values: new object[] { 3, 2, false, "Friday", (byte)3, "Forecasting Assignment" });
+
+            migrationBuilder.InsertData(
+                table: "Responses",
+                columns: new[] { "TaskId", "CategoryId", "Completed", "DueDate", "Quadrant", "Task" },
+                values: new object[] { 4, 2, false, "Thursday", (byte)4, "IS414 Test" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Responses_CategoryId",
